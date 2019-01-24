@@ -26,6 +26,15 @@
         <item>Vada Pav</item>
     </string-array>
 
+    <!-- json keys -->
+    <string name="json_key_name">name</string>
+    <string name="json_key_mainName">mainName</string>
+    <string name="json_key_alsoKnownAs">alsoKnownAs</string>
+    <string name="json_key_placeOfOrigin">placeOfOrigin</string>
+    <string name="json_key_description">description</string>
+    <string name="json_key_image">image</string>
+    <string name="json_key_ingredients">ingredients</string>
+
     <string-array name="sandwich_details">
         <item>{\"name\":{\"mainName\":\"Ham and cheese
             sandwich\",\"alsoKnownAs\":[]},\"placeOfOrigin\":\"\",\"description\":\"A ham and cheese
