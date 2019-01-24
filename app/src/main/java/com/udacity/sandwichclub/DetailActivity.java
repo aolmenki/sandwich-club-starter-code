@@ -3,6 +3,7 @@ package com.udacity.sandwichclub;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -47,6 +48,7 @@ public class DetailActivity extends AppCompatActivity {
         populateUI(sandwich);
         Picasso.with(this)
                 .load(sandwich.getImage())
+                .error(R.mipmap.ic_launcher)
                 .into(ingredientsIv);
 
         setTitle(sandwich.getMainName());
@@ -64,9 +66,27 @@ public class DetailActivity extends AppCompatActivity {
         TextView tvDescription = findViewById(R.id.description_tv);
         TextView tvIngredients = findViewById(R.id.ingredients_tv);
 
-        // Set text from Sandwich
-        tvAKA.setText(String.join(", ", p_sandwich.getAlsoKnownAs()));
-        tvOrigin.setText(p_sandwich.getPlaceOfOrigin());
+        // Set also known as
+        String strAKA = String.join(", ", p_sandwich.getAlsoKnownAs());
+        if (strAKA.equals("")) {
+            TextView tvAKALabel = findViewById(R.id.also_known_label_tv);
+            tvAKALabel.setVisibility(View.GONE);
+            tvAKA.setVisibility(View.GONE);
+        } else {
+            tvAKA.setText(strAKA);
+        }
+
+        // Set Origin
+        String strOrigin = p_sandwich.getPlaceOfOrigin();
+        if (strOrigin.equals("")) {
+            TextView tvOriginLabel = findViewById(R.id.origin_label_tv);
+            tvOriginLabel.setVisibility(View.GONE);
+            tvOrigin.setVisibility(View.GONE);
+        } else {
+            tvOrigin.setText(strOrigin);
+        }
+
+        // Set Description
         tvDescription.setText(p_sandwich.getDescription());
 
         // Build the String for Ingredients
