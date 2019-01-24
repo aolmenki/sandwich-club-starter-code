@@ -47,7 +47,7 @@ public class JsonUtils {
             returnSandwich.setImage(strImg);
 
             // Sandwich Ingredients
-            JSONArray jsonArrIngd = jsonName.getJSONArray(p_context.getString(R.string.json_key_ingredients));
+            JSONArray jsonArrIngd = jsonSandwich.getJSONArray(p_context.getString(R.string.json_key_ingredients));
             List<String> listIngd = new ArrayList<>();
             for (int i = 0; i < jsonArrIngd.length(); i++) {
                 listIngd.add(jsonArrIngd.getString(i));
