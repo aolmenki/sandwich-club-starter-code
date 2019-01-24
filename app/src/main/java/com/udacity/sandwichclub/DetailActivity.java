@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
@@ -43,7 +44,7 @@ public class DetailActivity extends AppCompatActivity {
             return;
         }
 
-        populateUI();
+        populateUI(sandwich);
         Picasso.with(this)
                 .load(sandwich.getImage())
                 .into(ingredientsIv);
@@ -56,7 +57,23 @@ public class DetailActivity extends AppCompatActivity {
         Toast.makeText(this, R.string.detail_error_message, Toast.LENGTH_SHORT).show();
     }
 
-    private void populateUI() {
+    private void populateUI(Sandwich p_sandwich) {
+        // Get Text Views
+        TextView tvAKA = findViewById(R.id.also_known_tv);
+        TextView tvOrigin = findViewById(R.id.origin_tv);
+        TextView tvDescription = findViewById(R.id.description_tv);
+        TextView tvIngredients = findViewById(R.id.ingredients_tv);
 
+        // Set text from Sandwich
+        tvAKA.setText(String.join(", ", p_sandwich.getAlsoKnownAs()));
+        tvOrigin.setText(p_sandwich.getPlaceOfOrigin());
+        tvDescription.setText(p_sandwich.getDescription());
+
+        // Build the String for Ingredients
+        StringBuilder strBuildIngredients = new StringBuilder();
+        strBuildIngredients.append("- "); // begins a list with a bullet
+        // the joined list will have the bullet except in front of the first element/ingredient
+        strBuildIngredients.append(String.join("\n- ", p_sandwich.getIngredients()));
+        tvIngredients.setText(strBuildIngredients);
     }
 }
